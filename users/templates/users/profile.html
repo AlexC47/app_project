@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link href="{% static 'css/profile.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block title %}
+    <title>My Profile</title>
+{% endblock %}
+
+
+
+{% block content %}
+
+{% if request.user.is_authenticated%}
+    <p2 class="red-text">Profile details here</p2>
+
+    {% else %}
+        <p2>You are not authenticated. Please <a href='/users/login'>login</a></p2>
+    {% endif %}
+
+
+{% endblock %}
+</html>

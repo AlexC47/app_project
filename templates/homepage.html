@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static%}
+
+{% block title %}
+    <title>Homepage, yo</title>
+{% endblock %}
+
+{% block style %}
+
+{% endblock %}
+
+{% block content %}
+
+    {% if request.user.is_authenticated %}
+    <h1> Hey, {{ request.user.first_name }} {{ request.user.last_name }}, welcome ! </h1>
+    {% endif %}
+
+
+    <h2>{{ brand }}</h2>
+    <h3>
+        {% if motto %}
+            {{ motto }}
+        {% else %}
+            Header 2
+        {%endif%}
+    </h3>
+
+    <p>{{ need_list | length }}</p>
+    <ul>
+        {% for need in need_list %}
+            <li>
+                {{ need.name }}
+                {{ need.tag }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

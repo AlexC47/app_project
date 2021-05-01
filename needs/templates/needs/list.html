@@ -1,0 +1,15 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <ul>
+        {% for need in need_list %}
+            <li>
+                <a href="{% url 'needs:details' store.id %}">
+                    <img src="{{ need.logo.url }}" width="100" />
+                    <div>{{ need.name }}</div>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

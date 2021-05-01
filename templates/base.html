@@ -1,0 +1,35 @@
+{% load static %}
+
+<html>
+    <head>
+        {% block title %}
+        {% endblock %}
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+        {% block style %}
+        {% endblock %}
+
+    </head>
+    <body>
+        <div class="main_tab">
+            <ul>
+                <li>INSERT LOGO HERE</li>
+                <li><a href="/">Homepage</a></li>
+                <li><a href="/contact/">Contact</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'users:profile' %}">Profile</a></li>
+                    <li><a href="/users/friends/">Friends</a></li>
+                    <li><a href="{% url 'needs:my_needs' %}">My Needs</a></li>
+                    <li><a href="{% url 'users:account:logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'users:login' %}">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+
+        <div class="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+    </body>
+</html>
