@@ -21,7 +21,7 @@
                     <li><a href="{% url 'needs:my_needs' %}">My Needs</a></li>
                     <li><a href="{% url 'users:account:logout' %}">Logout</a></li>
                 {% else %}
-                    <li><a href="{% url 'users:login' %}">Login</a></li>
+                    <li><a href="{% url 'users:account:login' %}">Login</a></li>
                 {% endif %}
             </ul>
         </div>
