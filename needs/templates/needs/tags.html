@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Needs | Tags</title>
+{% endblock %}
+
+
+{% block content %}
+
+{% if not user.is_superuser %}
+
+<h2>Might wanna go back, pal.</h2>
+    <br>
+    <img src="https://i.imgflip.com/3aku2l.png">
+
+{% else %}
+
+    <form action='' method='post'>
+        {% csrf_token %}
+        {{ form }}
+        <input type='submit' value='Add Tag'>
+    </form>
+
+
+    <ul>
+        {% for tag in tags %}
+        <li>
+            <p>Name: {{ tag.name }}</p>
+            <p>Active: {{ tag.is_active }}</p>
+            <p>Special Tag: {{ tag.special_tag }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+
+{% endif %}
+{% endblock %}

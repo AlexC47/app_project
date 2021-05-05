@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Needs | Needs</title>
+{% endblock %}
+
+
+{% block content %}
+{% if not user.is_superuser %}
+<h2>You shouldn't be here.</h2>
+    <br>
+    <img src="https://i.imgflip.com/3aku2l.png">
+
+{% else %}
+    <form action='' method='post'>
+        {% csrf_token %}
+        {{ form }}
+        <input type='submit' value='Add Need'>
+    </form>
+
+
+    <ul>
+        {% for need in needs %}
+        <li>
+            <p>Name: {{ need.name }}</p>
+            <p>Active: {{ need.is_active }}</p>
+            <p>Special Tag: {{ need.special_tag }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}

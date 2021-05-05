@@ -1,5 +1,5 @@
 body {
-    background-color: #004466;
+    background-color: #25274D;
     height: 100%;
 }
 
@@ -7,7 +7,7 @@ body {
     margin: 50px;
     min-width: 800px;
     padding: 10px;
-    background-color: #80d4ff;
+    background-color: #464866;
 
 }
 
@@ -24,7 +24,7 @@ body {
     font-family: Verdana;
     weight: bold;
     text-decoration:none;
-    color: white;
+    color: AAABB8;
     margin-right: 50px;
     padding: 10px;
     position: relative;
@@ -34,15 +34,51 @@ body {
 .main_tab ul li:first-child{
     margin-right: auto;
     margin-left: 10px;
+    color: #2e9cca;
 
 }
 
 .main_tab ul li a:hover {
     width: 60%;
-    background-color: black;
+    background-color: #29648A;
     border-radius: 10px;
 }
 
 .content {
     margin: 50px;
+    color: AAABB8;
 }
+
+.dropbtn {
+    border-radius: 10px;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
