@@ -1,7 +1,7 @@
 from django.contrib import admin
 from needs.models.categories import CategoryModel
 from needs.models.tags import TagModel
-from needs.models.needs import NeedModel
+from needs.models.needs import NeedModel, NeedTemplateModel
 # Register your models here.
 
 
@@ -20,3 +20,12 @@ class TagAdmin(admin.ModelAdmin):
 @admin.register(NeedModel)
 class NeedAdmin(admin.ModelAdmin):
     list_display = ('name', 'special_tag', 'is_active')
+
+
+@admin.register(NeedTemplateModel)
+class NeedTemplateAdmin(admin.ModelAdmin):
+    list_display = ('id', 'need')
+    # list_display = ('id', 'need', 'get_tags')
+    #
+    # def get_tags(self, obj):
+    #     return "\n".join([p.tags for p in self.tag.all()])

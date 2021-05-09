@@ -11,20 +11,26 @@ AuthUserModel = get_user_model()
 
 class NeedModel(CustomModel):
     # user = models.ForeignKey(AuthUserModel, on_delete=models.CASCADE)
-    name = models.CharField(max_length=255, null=False)
+    name = models.CharField(max_length=255, null=False, unique=True)
     special_tag = models.BooleanField(default=None)
     is_active = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.name
+
+    def __repr__(self):
+        return self.__str__()
+
 
 class NeedTemplateModel(CustomModel):
-    need = models.ManyToManyField(NeedModel, on_delete=models.CASCADE)
-    tag = models.ManyToManyField(TagModel, on_delete=models.CASCADE)
-    category = models.ManyToManyField(CategoryModel, on_delete=models.CASCADE)
+    need = models.ForeignKey(NeedModel, on_delete=models.CASCADE)
+    tag = models.ManyToManyField(TagModel)
+    category = models.ManyToManyField(CategoryModel)
 
 
 class UserNeedModel(CustomModel):
     user = models.ForeignKey(AuthUserModel, on_delete=models.CASCADE)
-    need = models.ManyToManyField(NeedTemplateModel, on_delete=models.CASCADE)
+    need = models.ManyToManyField(NeedTemplateModel)
     type = models.CharField(max_length=255, choices=PRIVACY_TYPES, null=False, default='Friends')
     scale = models.IntegerField(null=False, default=1)
     is_active = models.BooleanField(default=False)

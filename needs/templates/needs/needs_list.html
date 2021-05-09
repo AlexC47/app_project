@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Needs | List</title>
+{% endblock %}
+
+{% block content %}
+    <ul>
+        {% for need in need_templates %}
+            <li>
+                <p>Name: {{ need.need.name }}</p>
+                <p>Tag: {{ need.tag.name }}</p>
+                <p>Category: {{ need.category.name }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

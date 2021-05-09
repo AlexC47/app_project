@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, Http404, redirect
 from django.views.generic import ListView
-from needs.models.needs import NeedModel
+from needs.models.needs import NeedModel, NeedTemplateModel
 from needs.models.categories import CategoryModel
 from needs.models.tags import TagModel
 from django.views import View
@@ -17,9 +17,25 @@ def needs_list(request):
     else:
         needs = NeedModel.objects.all()
 
-    return render(request, 'needs/list.html', {
+    return render(request, 'needs/needs_list.html', {
         'needs_list': needs
     })
+
+
+class NeedTemplateView(View):
+    def get(self, request):
+        need_template_models = NeedTemplateModel.objects.all
+
+        return render(request, 'needs/needs_list.html', {
+            'need_templates': need_template_models,
+            # 'form': NeedTemplateForm
+        })
+
+    def post(self, request):
+        form = CategoryForm(request.POST)
+        form.save()
+
+        return redirect('/needs/list/')
 
 
 class CategoryView(View):
