@@ -15,6 +15,14 @@
 
 {% if request.user.is_authenticated%}
     <p2 class="red-text">Profile details here</p2>
+    <br>
+    <div>
+        <p2 class="red-text">About: {{ profile.about }}</p2>
+        <p2 class="red-text">City: {{ profile.city }}</p2>
+        <p2 class="red-text">Country: {{ profile.country }}</p2>
+        <p2 class="red-text">Avatar: {{ profile.avatar }}</p2>
+    </div>
+
 
     {% else %}
         <p2>You are not authenticated. Please <a href='/users/login'>login</a></p2>

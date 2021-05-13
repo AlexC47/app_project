@@ -1,0 +1,134 @@
+[
+{
+  "model": "needs.tagmodel",
+  "pk": 1,
+  "fields": {
+    "created_at": "2021-05-06T14:17:10.921Z",
+    "updated_at": "2021-05-06T14:17:10.921Z",
+    "name": "food",
+    "special_tag": false,
+    "is_active": false
+  }
+},
+{
+  "model": "needs.tagmodel",
+  "pk": 2,
+  "fields": {
+    "created_at": "2021-05-06T14:17:15.273Z",
+    "updated_at": "2021-05-06T14:17:15.273Z",
+    "name": "hunger",
+    "special_tag": false,
+    "is_active": false
+  }
+},
+{
+  "model": "needs.tagmodel",
+  "pk": 3,
+  "fields": {
+    "created_at": "2021-05-06T14:17:17.959Z",
+    "updated_at": "2021-05-06T14:17:17.959Z",
+    "name": "pizza",
+    "special_tag": false,
+    "is_active": false
+  }
+},
+{
+  "model": "needs.categorymodel",
+  "pk": 1,
+  "fields": {
+    "created_at": "2021-05-06T14:16:59.806Z",
+    "updated_at": "2021-05-06T14:16:59.806Z",
+    "name": "Quality Time",
+    "special_tag": false,
+    "is_active": false
+  }
+},
+{
+  "model": "needs.categorymodel",
+  "pk": 2,
+  "fields": {
+    "created_at": "2021-05-08T21:07:27.330Z",
+    "updated_at": "2021-05-08T21:07:27.330Z",
+    "name": "Acts of Service",
+    "special_tag": false,
+    "is_active": false
+  }
+},
+{
+  "model": "needs.needmodel",
+  "pk": 1,
+  "fields": {
+    "created_at": "2021-05-06T14:17:30.162Z",
+    "updated_at": "2021-05-06T14:17:30.162Z",
+    "name": "pizza",
+    "special_tag": false,
+    "is_active": false
+  }
+},
+{
+  "model": "needs.needmodel",
+  "pk": 2,
+  "fields": {
+    "created_at": "2021-05-06T14:17:33.227Z",
+    "updated_at": "2021-05-06T14:17:33.227Z",
+    "name": "juice",
+    "special_tag": false,
+    "is_active": false
+  }
+},
+{
+  "model": "needs.needmodel",
+  "pk": 3,
+  "fields": {
+    "created_at": "2021-05-06T15:01:37.932Z",
+    "updated_at": "2021-05-06T15:01:37.932Z",
+    "name": "socializing",
+    "special_tag": false,
+    "is_active": false
+  }
+},
+{
+  "model": "needs.needmodel",
+  "pk": 4,
+  "fields": {
+    "created_at": "2021-05-06T15:39:38.966Z",
+    "updated_at": "2021-05-06T15:39:38.966Z",
+    "name": "hug",
+    "special_tag": false,
+    "is_active": false
+  }
+},
+{
+  "model": "needs.needtemplatemodel",
+  "pk": 1,
+  "fields": {
+    "created_at": "2021-05-06T14:19:36.706Z",
+    "updated_at": "2021-05-06T14:19:36.706Z",
+    "need": 1,
+    "tag": [
+      1,
+      2,
+      3
+    ],
+    "category": [
+      1
+    ]
+  }
+},
+{
+  "model": "needs.needtemplatemodel",
+  "pk": 2,
+  "fields": {
+    "created_at": "2021-05-06T15:02:17.209Z",
+    "updated_at": "2021-05-06T15:02:17.209Z",
+    "need": 3,
+    "tag": [
+      2,
+      3
+    ],
+    "category": [
+      1
+    ]
+  }
+}
+]

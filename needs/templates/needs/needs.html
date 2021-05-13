@@ -7,7 +7,7 @@
 
 
 {% block content %}
-{% if not user.is_superuser %}
+{% if not user.is_authenticated %}
 <h2>Srsly, wtf.</h2>
     <br>
     <img src="https://i.imgflip.com/3aku2l.png">

@@ -9,7 +9,7 @@ AuthUserModel = get_user_model()
 
 class Profile(CustomModel):
     user = models.OneToOneField(AuthUserModel, on_delete=models.CASCADE, related_name='profile')
-    about = models.CharField(max_length=255, null=False)
-    city = models.CharField(max_length=255, null=False)
-    country = models.CharField(max_length=255, null=False)
+    about = models.CharField(max_length=255, null=True)
+    city = models.CharField(max_length=255, null=True)
+    country = models.CharField(max_length=255, null=True)
     avatar = models.ImageField(upload_to='profiles', default=None, null=True)
