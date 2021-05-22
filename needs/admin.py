@@ -25,7 +25,3 @@ class NeedAdmin(admin.ModelAdmin):
 @admin.register(NeedTemplateModel)
 class NeedTemplateAdmin(admin.ModelAdmin):
     list_display = ('id', 'need')
-    # list_display = ('id', 'need', 'get_tags')
-    #
-    # def get_tags(self, obj):
-    #     return "\n".join([p.tags for p in self.tag.all()])

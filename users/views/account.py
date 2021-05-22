@@ -1,9 +1,10 @@
 import django.contrib.auth
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.views import View
 from users.models.user import Profile
 from django.contrib.auth import get_user_model
 from users.forms.myprofile import MyProfileForm
+from users.forms.register import RegisterForm
 
 # Create your views here.
 AuthUserModel = get_user_model()
@@ -43,17 +44,3 @@ def logout_view(request):
     django.contrib.auth.logout(request)
     return redirect('/')
 
-
-class RegisterView(View):
-    def get(self, request):
-        form = RegisterForm()
-        return render(request, 'users/register.html', {
-            'form': form
-        }
-
-    def post(self, request):
-        form = RegisterForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            send_register_email(user)
-            return redirect(reverse('users:account:login'))

@@ -24,10 +24,10 @@ def needs_list(request):
 
 class NeedTemplateView(View):
     def get(self, request):
-        need_template_models = NeedTemplateModel.objects.all
+        need_templates = NeedTemplateModel.objects.all
 
         return render(request, 'needs/needs_list.html', {
-            'need_templates': need_template_models,
+            'need_templates': need_templates,
             # 'form': NeedTemplateForm
         })
 

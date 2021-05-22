@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block style %}
+    <link href="{% static 'css/needs_list.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
 {% block title %}
     <title>Needs | List</title>
 {% endblock %}
@@ -8,11 +12,24 @@
 {% block content %}
     <ul>
         {% for need in need_templates %}
-            <li>
-                <p>Name: {{ need.need.name }}</p>
-                <p>Tag: {{ need.tag.name }}</p>
-                <p>Category: {{ need.category.name }}</p>
-            </li>
+            <div class="need-template">
+                <li>
+                    <p>Name: {{ need.need.name }}</p>
+                    <p>Tag: {% for tag in need.tag.all %}
+                        {{ tag.name }},
+                    {% endfor %}
+                    </p>
+                    <p>Category:
+                    {% for category in need.category.all %}
+                        {{ category.name }},
+                    {% endfor %}
+                    </p>
+                    <form class="add-user-need" method="post" action="{% url 'needs:my_needs' %}">
+                        {% csrf_token %}
+                        <input type="submit" value="Add need to profile." />
+                    </form>
+                </li>
+            </div>
         {% endfor %}
     </ul>
 {% endblock %}

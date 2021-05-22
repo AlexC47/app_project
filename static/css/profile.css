@@ -1,4 +1,4 @@
 .red-text {
-    color: red;
+    color: var(--txt_color);
     margin:10px;
 }

@@ -1,0 +1,7 @@
+.need-template {
+    background-color: var(--bg_color2);
+    border-style: rounded;
+    color: var(--txt_color);
+    width: 200px;
+    text-decoration: none;
+}
