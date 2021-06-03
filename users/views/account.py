@@ -20,9 +20,6 @@ def profile_view(request):
 
 class MyProfileView(View):
     def get(self, request):
-        # profile = Profile.objects.get(id=AuthUserModel)
-        # profile = request.user.Profile()
-        # profile = request.user.get_profile()
         profile_form = MyProfileForm(instance=request.user.profile)
 
         return render(request, 'users/profile.html', {
@@ -43,4 +40,3 @@ def friends_view(request):
 def logout_view(request):
     django.contrib.auth.logout(request)
     return redirect('/')
-

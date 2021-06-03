@@ -13,3 +13,4 @@ class Profile(CustomModel):
     city = models.CharField(max_length=255, null=True)
     country = models.CharField(max_length=255, null=True)
     avatar = models.ImageField(upload_to='profiles', default=None, null=True)
+    friends = models.ManyToManyField(AuthUserModel, blank=True, related_name='friends')

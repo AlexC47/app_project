@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>My friends</title>
+{% endblock %}
+
+{% block content %}
+<h1>Let's look at your social life, {{ user.first_name }} {{ user.last_name }}</h1>
+
+
+
+<div>
+    <h2>Requests</h2>
+    {% if friend_requests %}
+        {% for request in friend_requests %}
+                <a href="{% url 'friends:accept' request.id %}">Accept {{ request.sender }} as friend.</a>
+        {% endfor %}
+    {% else %}
+
+    <p>You have no friend requests.</p>
+
+    {% endif %}
+</div>
+
+<div>
+    <h2>Friends:</h2>
+    {% if user.profile.friends.all %}
+
+        {% for user_friend in user.profile.friends.all %}
+            <div>
+                VIEW PROFILE {{ user_friend }}
+            </div>
+        {% endfor %}
+
+    {% else %}
+
+        <p>Kinda' lonely there, bud.</p>
+
+    {% endif %}
+</div>
+
+<div>
+    <h2>Here's some hot users in your area:</h2>
+    {% for other_user in all_users %}
+        {% if other_user not in user.profile.friends.all %}
+            <div>
+                {{ other_user }} <a href="{% url 'friends:add-friend' other_user.id %}">ADD</a>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+
+
+{% endblock %}

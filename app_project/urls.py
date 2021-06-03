@@ -25,6 +25,7 @@ urlpatterns = [
     path('contact/', contact_view),
     path('users/', include('users.urls')),
     path('needs/', include('needs.urls')),
+    path('friends/', include('friends.urls')),
 
 ]
 

@@ -35,6 +35,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'needs.apps.NeedsConfig',
     'users.apps.UsersConfig',
+    'friends.apps.FriendsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
