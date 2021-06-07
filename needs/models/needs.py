@@ -10,7 +10,6 @@ AuthUserModel = get_user_model()
 
 
 class NeedModel(CustomModel):
-    # user = models.ForeignKey(AuthUserModel, on_delete=models.CASCADE)
     name = models.CharField(max_length=255, null=False, unique=True)
     special_tag = models.BooleanField(default=None)
     is_active = models.BooleanField(default=False)
@@ -29,13 +28,13 @@ class NeedTemplateModel(CustomModel):
 
 
 class UserNeedModel(CustomModel):
-    user = models.ForeignKey(AuthUserModel, on_delete=models.CASCADE)
-    need = models.ManyToManyField(NeedTemplateModel)
+    user = models.ForeignKey(AuthUserModel, on_delete=models.CASCADE, related_name='needs')
+    need = models.ForeignKey(NeedTemplateModel, on_delete=models.CASCADE, default=None, null=False)
     type = models.CharField(max_length=255, choices=PRIVACY_TYPES, null=False, default='Friends')
     scale = models.IntegerField(null=False, default=1)
     is_active = models.BooleanField(default=False)
     is_group = models.BooleanField(default=False)
-    pending_list = models.ForeignKey(UserNeedPending, default=None, on_delete=models.CASCADE)
+    pending_list = models.ManyToManyField(AuthUserModel, blank=True, related_name='friends_pending')
     pending_request = models.BooleanField(default=False)
     # confirmed_with =
     ongoing = models.BooleanField(default=False)

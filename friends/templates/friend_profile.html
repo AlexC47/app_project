@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>{{ user.first_name }}'s profile</title>
+{% endblock %}
+
+{% block content %}
+    <div>About: {{ user.profile.about }}</div>
+
+    <div>City: {{ user.profile.city }}</div>
+    <div>{% if user.profile.avatar %}
+        <img src="{{ user.profile.avatar.url }}" width="150">
+    {% else %}
+        User has not uploaded an avatar
+        <div>
+            <img src="{% static 'default_avatar.png' %}" height="150">
+        </div>
+    {% endif %}
+    </div>
+
+<div>{{ user.first_name }} {{ user.last_name }} has the following needs:</div>
+<div>
+    <ul>
+        {% for need in needs %}
+            {% if request.user not in need.pending_list.all %}
+                <li>{{ need.need.need.name }} {{ need.scale }} <a href="{% url 'needs:help' need.id %}">Help out</a></li>
+            {% else %}
+                <li>{{ need.need.need.name }} {{ need.scale }} | You are already helping<a href="{% url 'needs:stop-help' need.id %}">X</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+</div>
+{% endblock %}

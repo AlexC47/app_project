@@ -13,25 +13,32 @@
 
     {% if request.user.is_authenticated %}
     <h1> Hey, {{ request.user.first_name }} {{ request.user.last_name }}, welcome ! </h1>
+
+    <p>You have {{ user.profile.friends.all | length }} friends in need.</p>
+        <ul>
+            {% for friend in user.profile.friends.all %}
+                <li>
+                    {{ friend.first_name }} {{ friend.last_name }} has {{ friend.needs.all | length }} needs
+                    <a href="{% url 'friends:friend-profile' friend.id %}">
+                        View Profile</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h2>{{ brand }}</h2>
+            <h3>
+                {% if motto %}
+                    {{ motto }}
+                <p>Please <a href="{% url 'users:account:login' %}">login</a> first</p>
+                {% else %}
+                    Header 2
+                {%endif%}
+            </h3>
+
     {% endif %}
 
 
-    <h2>{{ brand }}</h2>
-    <h3>
-        {% if motto %}
-            {{ motto }}
-        {% else %}
-            Header 2
-        {%endif%}
-    </h3>
 
-    <p>{{ need_list | length }}</p>
-    <ul>
-        {% for need in need_list %}
-            <li>
-                {{ need.name }}
-                {{ need.tag }}
-            </li>
-        {% endfor %}
-    </ul>
+
+
 {% endblock %}

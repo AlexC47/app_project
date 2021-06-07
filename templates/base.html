@@ -16,12 +16,12 @@
     <body>
         <div class="main_tab">
             <ul>
-                <li>INSERT LOGO HERE</li>
+                <li>inNEED</li>
                 <li><a href="/">Homepage</a></li>
                 <li><a href="/contact/">Contact</a></li>
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'users:profile' %}">Profile</a></li>
-                    <li><a href="{% url 'friends:friends' %}">Friends</a></li>
+                    <li><a href="{% url 'friends:friends' %}">Connections</a></li>
                     <li><a href="{% url 'needs:my_needs' %}">My Needs</a></li>
                     <li class="dropdown">
                       <button class="dropbtn">ADD C/T/N</button>

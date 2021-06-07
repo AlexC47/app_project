@@ -14,19 +14,31 @@
 {% block content %}
 
 {% if request.user.is_authenticated%}
-    <p2 class="red-text">Profile details here</p2>
-    <br>
-    <div>
-        <p2 class="red-text">About: {{ profile.about }}</p2>
-        <p2 class="red-text">City: {{ profile.city }}</p2>
-        <p2 class="red-text">Country: {{ profile.country }}</p2>
-        <p2 class="red-text">Avatar: {{ profile.avatar }}</p2>
-    </div>
-
+    <p>Profile details for {{ user.first_name }}</p>
+    {% if user.profile.avatar %}
+        <div>
+            <img src="{{ user.profile.avatar.url }}" height="150">
+        </div>
 
     {% else %}
-        <p2>You are not authenticated. Please <a href='/users/login'>login</a></p2>
+        <p>No avatar uploaded</p>
+        <div>
+            <img src="{% static 'default_avatar.png' %}" height="150">
+        </div>
+
     {% endif %}
+
+
+    <form method='post' enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ profile_form.as_p }}
+        <button type='submit', name="btn1">Update</button>
+
+
+
+{% else %}
+    <p>You are not authenticated. Please <a href='/users/login'>login</a></p>
+{% endif %}
 
 
 {% endblock %}

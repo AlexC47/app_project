@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Needs | Categories</title>
+{% endblock %}
+
+
+{% block content %}
+{% if not user.is_authenticated %}
+<h2>You shouldn't be here.</h2>
+    <br>
+    <img src="https://i.imgflip.com/3aku2l.png">
+
+{% else %}
+{{ need_template.id }}
+
+{% endif %}
+{% endblock %}

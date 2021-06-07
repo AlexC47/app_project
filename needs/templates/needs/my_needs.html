@@ -12,4 +12,30 @@
 
 <p2>Check out some available <a href="{% url 'needs:needs_templates_list' %}">needs</a></p2>
 
+<div>
+    You currently have {{ user_needs | length }} needs.
+</div>
+
+<ul>
+        {% for need in user_needs %}
+        <li>
+            <p>Name: {{ need.need.need.name }}</p>
+            <p>Scale: {{ need.scale }}</p>
+            <p>Tag: {% for tag in need.need.tag.all %}
+                        {{ tag.name }}
+            {% endfor %}
+            </p>
+
+            {% if need.pending_list %}
+            <p>Pending Friends: {% for friend in need.pending_list.all %}
+                        {{ friend.first_name }}
+            {% endfor %}
+            </p>
+            {% endif %}
+            <a href="{% url 'needs:remove' need.id %}">REMOVE NEED</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+
 {% endblock %}

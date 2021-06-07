@@ -7,48 +7,50 @@
 {% block content %}
 <h1>Let's look at your social life, {{ user.first_name }} {{ user.last_name }}</h1>
 
+    <div>
+        <h2>Requests</h2>
+        {% if friend_requests %}
+            {% for request in friend_requests %}
+                    <a href="{% url 'friends:accept' request.id %}">Accept {{ request.sender }} as friend.</a>
+            {% endfor %}
+        {% else %}
 
+        <p>You have no friend requests.</p>
 
-<div>
-    <h2>Requests</h2>
-    {% if friend_requests %}
-        {% for request in friend_requests %}
-                <a href="{% url 'friends:accept' request.id %}">Accept {{ request.sender }} as friend.</a>
-        {% endfor %}
-    {% else %}
-
-    <p>You have no friend requests.</p>
-
-    {% endif %}
-</div>
-
-<div>
-    <h2>Friends:</h2>
-    {% if user.profile.friends.all %}
-
-        {% for user_friend in user.profile.friends.all %}
-            <div>
-                VIEW PROFILE {{ user_friend }}
-            </div>
-        {% endfor %}
-
-    {% else %}
-
-        <p>Kinda' lonely there, bud.</p>
-
-    {% endif %}
-</div>
-
-<div>
-    <h2>Here's some hot users in your area:</h2>
-    {% for other_user in all_users %}
-        {% if other_user not in user.profile.friends.all %}
-            <div>
-                {{ other_user }} <a href="{% url 'friends:add-friend' other_user.id %}">ADD</a>
-            </div>
         {% endif %}
-    {% endfor %}
-</div>
+    </div>
+
+    <div>
+        <h2>Friends:</h2>
+        {% if user.profile.friends.all %}
+
+            {% for user_friend in user.profile.friends.all %}
+                <div>
+                    <a href="{% url 'friends:friend-profile' user_friend.id %}">
+                        View Profile</a> {{ user_friend.first_name }} {{ user_friend.last_name }}  | Location: {{ user_friend.profile.city }}
+                    <a href="{% url 'friends:remove-friend' user_friend.id %}"
+                       onclick="return confirm('Are you sure you want to unfriend {{ user_friend.first_name }}?')">
+                        REMOVE FRIEND</a>
+                </div>
+            {% endfor %}
+
+        {% else %}
+
+            <p>Kinda' lonely there, bud.</p>
+
+        {% endif %}
+    </div>
+
+    <div>
+        <h2>Here's some hot users in your area:</h2>
+        {% for other_user in all_users %}
+            {% if other_user not in user.profile.friends.all and other_user.profile.city == user.profile.city %}
+                <div>
+                    {{ other_user.first_name }} {{ other_user.last_name }} <a href="{% url 'friends:add-friend' other_user.id %}">ADD</a> Location: {{ other_user.profile.city }}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
 
 
 {% endblock %}

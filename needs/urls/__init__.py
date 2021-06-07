@@ -1,5 +1,7 @@
 from django.urls import path, include
-from needs.views.needs import needs_list, CategoryView, TagView, NeedView, NeedTemplateView
+from needs.views.needs import needs_list, CategoryView, TagView, NeedView, NeedTemplateView, HelpNeedView, StopHelpView
+from needs.views.add_need import AddNeedToProfileView
+from needs.views.my_needs import RemoveNeedView
 
 app_name = 'needs'
 
@@ -10,5 +12,10 @@ urlpatterns = [
     path('tags/', TagView.as_view(), name='tags'),
     path('needs/', NeedView.as_view(), name='needs'),
     path('list/', NeedTemplateView.as_view(), name='needs_templates_list'),
+    path('add-user-need/<int:id>/', AddNeedToProfileView.as_view(), name='add_user_need'),
+    path('remove/<int:id>/', RemoveNeedView.as_view(), name='remove'),
+    path('help/<int:id>/', HelpNeedView.as_view(), name='help'),
+    path('stop-help/<int:id>/', StopHelpView.as_view(), name='stop-help'),
+
 
 ]

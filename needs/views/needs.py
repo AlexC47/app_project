@@ -1,12 +1,14 @@
 from django.shortcuts import render, HttpResponse, Http404, redirect
 from django.views.generic import ListView
-from needs.models.needs import NeedModel, NeedTemplateModel
+from needs.models.needs import NeedModel, NeedTemplateModel, UserNeedModel
 from needs.models.categories import CategoryModel
 from needs.models.tags import TagModel
 from django.views import View
 from needs.forms.categories import CategoryForm
 from needs.forms.tags import TagForm
 from needs.forms.needs import NeedForm
+from needs.forms.needtemplate import NeedTemplateForm
+from django.urls import reverse
 
 
 def needs_list(request):
@@ -28,11 +30,11 @@ class NeedTemplateView(View):
 
         return render(request, 'needs/needs_list.html', {
             'need_templates': need_templates,
-            # 'form': NeedTemplateForm
+            'form': NeedTemplateForm
         })
 
     def post(self, request):
-        form = CategoryForm(request.POST)
+        form = NeedTemplateForm(request.POST)
         form.save()
 
         return redirect('/needs/list/')
@@ -83,4 +85,22 @@ class NeedView(View):
         form = NeedForm(request.POST)
         form.save()
 
-        return redirect('/needs/needs/')
+        return redirect(reverse('needs:needs'))
+
+
+class HelpNeedView(View):
+    def get(self, request, id):
+        need = UserNeedModel.objects.get(id=id)
+        helper = request.user
+        need.pending_list.add(helper)
+
+        return redirect('/')
+
+
+class StopHelpView(View):
+    def get(self, request, id):
+        need = UserNeedModel.objects.get(id=id)
+        helper = request.user
+        need.pending_list.remove(helper)
+
+        return redirect('/')

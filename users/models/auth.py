@@ -34,7 +34,6 @@ class AuthUser(AbstractUser):
     first_name = models.CharField(_('first name'), max_length=150, null=False)
     last_name = models.CharField(_('last name'), max_length=150, null=False)
     email = models.EmailField(_('email address'), null=False, unique=True)
-
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
 
