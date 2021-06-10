@@ -5,6 +5,10 @@
     <title>My needs</title>
 {% endblock %}
 
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/my_needs.css' %}">
+{% endblock %}
+
 
 {% block content %}
 
@@ -18,22 +22,41 @@
 
 <ul>
         {% for need in user_needs %}
-        <li>
-            <p>Name: {{ need.need.need.name }}</p>
-            <p>Scale: {{ need.scale }}</p>
-            <p>Tag: {% for tag in need.need.tag.all %}
-                        {{ tag.name }}
-            {% endfor %}
-            </p>
+        <div class="need-box" display="flex">
+                {% if need.is_active %}
+                    <li>
+                        <p>Name: {{ need.need.need.name }}
+                            <a href="{% url 'needs:remove' need.id %}">X</a></p>
 
-            {% if need.pending_list %}
-            <p>Pending Friends: {% for friend in need.pending_list.all %}
-                        {{ friend.first_name }}
-            {% endfor %}
-            </p>
-            {% endif %}
-            <a href="{% url 'needs:remove' need.id %}">REMOVE NEED</a>
-        </li>
+                        <p>Tag: {% for tag in need.need.tag.all %}
+                                    {{ tag.name }}
+                        {% endfor %}
+                        </p>
+
+                        {% if need.pending_list.exists %}
+                        <p>Pending Friends: {% for friend in need.pending_list.all %}
+                                    {{ friend.first_name }}
+                            <a href="{% url 'needs:confirm' need.id friend.id %}">Confirm</a>
+                        </p>
+                        {% endfor %}
+                        {% else %}
+                            <p>No pending friends</p>
+                        {% endif %}
+
+                        {% if need.confirmed_with.exists %}
+                        <p>Confirmed with: {% for friend in need.confirmed_with.all %}
+                                    {{ friend.first_name }}
+                        </p>
+                        {% endfor %}
+                        {% else %}
+                            <p>Not confirmed with anyone yet...</p>
+                        {% endif %}
+                        <div>
+                            <progress min="1" max="5" value="{{ need.scale_check }}" class="progressbar"></progress>
+                        </div>
+                    </li>
+                {% endif %}
+        </div>
         {% endfor %}
     </ul>
 

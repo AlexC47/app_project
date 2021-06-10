@@ -14,7 +14,7 @@ class AddNeedToProfileView(View):
         print(user.first_name)
         print(need_template.id)
 
-        user_need, created = UserNeedModel.objects.get_or_create(user=user, need=need_template)
+        user_need, created = UserNeedModel.objects.get_or_create(user=user, need=need_template, is_active=True)
         user_need.save()
         #
         # return render(request, 'needs/add_user_need.html', {
@@ -23,7 +23,6 @@ class AddNeedToProfileView(View):
         # })
 
         return redirect(reverse('needs:my_needs'))
-
 
     def post(self, request):
         pass

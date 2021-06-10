@@ -1,13 +1,14 @@
-from django.shortcuts import render, HttpResponse, Http404, redirect
+from django.shortcuts import render, HttpResponseRedirect, Http404, redirect
 from django.views.generic import ListView
-from needs.models.needs import NeedModel, NeedTemplateModel, UserNeedModel
-from needs.models.categories import CategoryModel
-from needs.models.tags import TagModel
+from ..models.needs import NeedModel, NeedTemplateModel, UserNeedModel
+from ..models.categories import CategoryModel
+from ..models.tags import TagModel
 from django.views import View
-from needs.forms.categories import CategoryForm
-from needs.forms.tags import TagForm
-from needs.forms.needs import NeedForm
-from needs.forms.needtemplate import NeedTemplateForm
+from ..forms.categories import CategoryForm
+from ..forms.tags import TagForm
+from ..forms.needs import NeedForm
+from ..forms.needtemplate import NeedTemplateForm
+from users.models import AuthUser
 from django.urls import reverse
 
 
@@ -94,7 +95,9 @@ class HelpNeedView(View):
         helper = request.user
         need.pending_list.add(helper)
 
-        return redirect('/')
+        # return redirect('/')
+
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 
 class StopHelpView(View):
@@ -102,5 +105,18 @@ class StopHelpView(View):
         need = UserNeedModel.objects.get(id=id)
         helper = request.user
         need.pending_list.remove(helper)
+        need.confirmed_with.remove(helper)
 
-        return redirect('/')
+        # return redirect('/')
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+
+class ConfirmHelpView(View):
+    def get(self, request, id1, id2):
+        need = UserNeedModel.objects.get(id=id1)
+        helper = AuthUser.objects.get(id=id2)
+        need.confirmed_with.add(helper)
+        need.pending_list.remove(helper)
+
+        # return redirect('/')
+        return redirect(reverse('needs:my_needs'))

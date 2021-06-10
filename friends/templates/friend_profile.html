@@ -23,10 +23,14 @@
 <div>
     <ul>
         {% for need in needs %}
-            {% if request.user not in need.pending_list.all %}
-                <li>{{ need.need.need.name }} {{ need.scale }} <a href="{% url 'needs:help' need.id %}">Help out</a></li>
+            {% if request.user not in need.pending_list.all and request.user not in need.confirmed_with.all %}
+                <li>{{ need.need.need.name }}
+                    <progress min="1" max="5" value="{{ need.scale_check }}" class="progressbar"></progress>
+                    <a href="{% url 'needs:help' need.id %}">Help out</a></li>
             {% else %}
-                <li>{{ need.need.need.name }} {{ need.scale }} | You are already helping<a href="{% url 'needs:stop-help' need.id %}">X</a></li>
+                <li>{{ need.need.need.name }}
+                    <progress min="1" max="5" value="{{ need.scale_check }}" class="progressbar"></progress>
+                    | You are already helping<a href="{% url 'needs:stop-help' need.id %}">X</a></li>
             {% endif %}
         {% endfor %}
     </ul>

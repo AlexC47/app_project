@@ -11,10 +11,7 @@ AuthUserModel = get_user_model()
 
 
 def my_needs_view(request):
-    # user_needs = AuthUserModel.needs.all
     user_needs = request.user.needs.all
-    # user_needs = UserNeedModel.objects.filter(user=request.user.id)
-    print(request.user.needs)
     return render(request, 'needs/my_needs.html', {
            'user_needs': user_needs,
     })

@@ -1,5 +1,5 @@
 from django.urls import path, include
-from needs.views.needs import needs_list, CategoryView, TagView, NeedView, NeedTemplateView, HelpNeedView, StopHelpView
+from needs.views.needs import needs_list, CategoryView, TagView, NeedView, NeedTemplateView, HelpNeedView, StopHelpView, ConfirmHelpView
 from needs.views.add_need import AddNeedToProfileView
 from needs.views.my_needs import RemoveNeedView
 
@@ -16,6 +16,7 @@ urlpatterns = [
     path('remove/<int:id>/', RemoveNeedView.as_view(), name='remove'),
     path('help/<int:id>/', HelpNeedView.as_view(), name='help'),
     path('stop-help/<int:id>/', StopHelpView.as_view(), name='stop-help'),
+    path('confirm/<int:id1>/<int:id2>/', ConfirmHelpView.as_view(), name='confirm'),
 
 
 ]

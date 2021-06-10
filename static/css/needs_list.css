@@ -4,4 +4,5 @@
     color: var(--txt_color);
     width: 200px;
     text-decoration: none;
+    list-style:none;
 }

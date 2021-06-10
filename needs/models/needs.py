@@ -31,10 +31,18 @@ class UserNeedModel(CustomModel):
     user = models.ForeignKey(AuthUserModel, on_delete=models.CASCADE, related_name='needs')
     need = models.ForeignKey(NeedTemplateModel, on_delete=models.CASCADE, default=None, null=False)
     type = models.CharField(max_length=255, choices=PRIVACY_TYPES, null=False, default='Friends')
-    scale = models.IntegerField(null=False, default=1)
     is_active = models.BooleanField(default=False)
     is_group = models.BooleanField(default=False)
     pending_list = models.ManyToManyField(AuthUserModel, blank=True, related_name='friends_pending')
-    pending_request = models.BooleanField(default=False)
-    # confirmed_with =
+    completed = models.BooleanField(default=False)
+    confirmed_with = models.ManyToManyField(AuthUserModel, blank=True, related_name='friends_confirmed')
     ongoing = models.BooleanField(default=False)
+
+    @property
+    def scale_check(self):
+        scale = 1
+        scale += 1 if self.pending_list.count() > 0 or self.confirmed_with.count() > 0 else 0
+        scale += 1 if self.confirmed_with.count() > 0 else 0
+        scale += 1 if self.ongoing else 0
+        scale += 1 if self.completed else 0
+        return scale

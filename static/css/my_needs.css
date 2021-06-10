@@ -1,0 +1,36 @@
+.need-box {
+    list-style:none;
+    padding: 10px;
+    background-color: var(--bg_color2);
+    width: 350px;
+    border: 10px;
+    border-color: black;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+
+.progressbar {
+position: relative;
+allign: center;
+  height: 5px;
+  width: 350px;
+  border: 0;
+  background: #eee;
+  border-radius: 100px;
+}
+
+progress::-moz-progress-bar {
+  border-radius: 100px;
+  background: linear-gradient(to right, rgba(33, 177, 89, .1), rgba(33, 177, 89, 1));
+}
+
+progress::-webkit-progress-bar {
+  background: #eee;
+  border-radius: 100px;
+}
+
+progress::-webkit-progress-value {
+  border-radius: 100px;
+  background: linear-gradient(to right, rgba(33, 177, 89, .1), rgba(33, 177, 89, 1));
+}

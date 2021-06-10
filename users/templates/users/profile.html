@@ -13,6 +13,7 @@
 
 {% block content %}
 
+
 {% if request.user.is_authenticated%}
     <p>Profile details for {{ user.first_name }}</p>
     {% if user.profile.avatar %}
@@ -33,6 +34,8 @@
         {% csrf_token %}
         {{ profile_form.as_p }}
         <button type='submit', name="btn1">Update</button>
+
+        {% include 'includes/messages.html' %}
 
 
 
