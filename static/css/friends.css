@@ -1,0 +1,29 @@
+.stats_container {
+    align: center;
+    top: 90px;
+    right: 10px;
+    margin: 20px;
+    padding: 10px;
+    background-color: var(--bg_color2);
+    border-radius: 10px;
+    min-width: 250px;
+    max-width: 500 px;
+}
+
+.page-content {
+    min-width: 500px;
+    position: center;
+    margin: auto;
+    padding: 10px;
+    width: 70%;
+    display: flex;
+}
+
+.header {
+    min-width: 500px;
+    position: center;
+    margin: auto;
+    padding: 10px;
+    width: 70%;
+    display: flex;
+}

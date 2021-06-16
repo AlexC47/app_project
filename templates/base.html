@@ -1,5 +1,6 @@
 {% load static %}
 
+
 <html>
     <head>
         {% block title %}
@@ -10,24 +11,26 @@
 
     </head>
     <body>
+    <div>
         <div class="main_tab">
             <ul>
-                <li><a href="/admin/">INSERT LOGO HERE</a>></li>
+                <li><a href="/" class="logo">inNEED</a></li>
                 <li><a href="/">Homepage</a></li>
                 <li><a href="/contact/">Contact</a></li>
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'users:profile' %}">Profile</a></li>
-                    <li><a href="/users/friends/">Friends</a></li>
+                    <li><a href="{% url 'friends:friends' %}">Friends</a></li>
                     <li><a href="{% url 'needs:my_needs' %}">My Needs</a></li>
-                {% if user.is_superuser %}
                     <li class="dropdown">
-                      <button class="dropbtn">Dropdown</button>
+                      <button class="dropbtn">ADD C/T/N</button>
                       <div class="dropdown-content">
                         <a href="{% url 'needs:categories' %}">Categories</a>
                         <a href="{% url 'needs:tags' %}">Tags</a>
                         <a href="{% url 'needs:needs' %}">Needs</a>
                       </div>
                     </li>
+                {% if user.is_superuser %}
+                    <li><a href="/admin/">Admin</a></li>
                 {% endif %}
                     <li><a href="{% url 'users:account:logout' %}">Logout</a></li>
                 {% else %}
@@ -35,11 +38,13 @@
                 {% endif %}
             </ul>
         </div>
+    </div>
 
-        <div class="content">
-            {% block content %}
-            {% endblock %}
-        </div>
+    <div class="content">
+        {% include 'includes/messages.html' %}
+        {% block content %}
+        {% endblock %}
+    </div>
 
     </body>
 </html>

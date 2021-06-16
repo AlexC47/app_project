@@ -1,4 +1,3 @@
-from .needs import NeedModel, UserNeedModel
-from .categories import NeedCategoryModel, CategoryModel
-from .pending import UserNeedPending
-from .tags import NeedTagModel, TagModel
+from .needs import NeedModel, UserNeedModel, NeedTemplateModel
+from .categories import CategoryModel
+from .tags import TagModel

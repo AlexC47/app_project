@@ -1,2 +1,4 @@
-from .user import Profile
+from .auth import AuthUser
+from .user import Profile, Statistics
+from .notifications import Notification
 # from .friends import Friendships

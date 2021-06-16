@@ -1,0 +1,538 @@
+[
+  {
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+      "name": "Can add category model",
+      "content_type": 1,
+      "codename": "add_categorymodel"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+      "name": "Can change category model",
+      "content_type": 1,
+      "codename": "change_categorymodel"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+      "name": "Can delete category model",
+      "content_type": 1,
+      "codename": "delete_categorymodel"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+      "name": "Can view category model",
+      "content_type": 1,
+      "codename": "view_categorymodel"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+      "name": "Can add need model",
+      "content_type": 2,
+      "codename": "add_needmodel"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+      "name": "Can change need model",
+      "content_type": 2,
+      "codename": "change_needmodel"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+      "name": "Can delete need model",
+      "content_type": 2,
+      "codename": "delete_needmodel"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+      "name": "Can view need model",
+      "content_type": 2,
+      "codename": "view_needmodel"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+      "name": "Can add need template model",
+      "content_type": 3,
+      "codename": "add_needtemplatemodel"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+      "name": "Can change need template model",
+      "content_type": 3,
+      "codename": "change_needtemplatemodel"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+      "name": "Can delete need template model",
+      "content_type": 3,
+      "codename": "delete_needtemplatemodel"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+      "name": "Can view need template model",
+      "content_type": 3,
+      "codename": "view_needtemplatemodel"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+      "name": "Can add tag model",
+      "content_type": 4,
+      "codename": "add_tagmodel"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+      "name": "Can change tag model",
+      "content_type": 4,
+      "codename": "change_tagmodel"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+      "name": "Can delete tag model",
+      "content_type": 4,
+      "codename": "delete_tagmodel"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+      "name": "Can view tag model",
+      "content_type": 4,
+      "codename": "view_tagmodel"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+      "name": "Can add user need pending",
+      "content_type": 5,
+      "codename": "add_userneedpending"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+      "name": "Can change user need pending",
+      "content_type": 5,
+      "codename": "change_userneedpending"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+      "name": "Can delete user need pending",
+      "content_type": 5,
+      "codename": "delete_userneedpending"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+      "name": "Can view user need pending",
+      "content_type": 5,
+      "codename": "view_userneedpending"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+      "name": "Can add user need model",
+      "content_type": 6,
+      "codename": "add_userneedmodel"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+      "name": "Can change user need model",
+      "content_type": 6,
+      "codename": "change_userneedmodel"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+      "name": "Can delete user need model",
+      "content_type": 6,
+      "codename": "delete_userneedmodel"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+      "name": "Can view user need model",
+      "content_type": 6,
+      "codename": "view_userneedmodel"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+      "name": "Can add profile",
+      "content_type": 7,
+      "codename": "add_profile"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+      "name": "Can change profile",
+      "content_type": 7,
+      "codename": "change_profile"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+      "name": "Can delete profile",
+      "content_type": 7,
+      "codename": "delete_profile"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+      "name": "Can view profile",
+      "content_type": 7,
+      "codename": "view_profile"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+      "name": "Can add log entry",
+      "content_type": 8,
+      "codename": "add_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+      "name": "Can change log entry",
+      "content_type": 8,
+      "codename": "change_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+      "name": "Can delete log entry",
+      "content_type": 8,
+      "codename": "delete_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+      "name": "Can view log entry",
+      "content_type": 8,
+      "codename": "view_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+      "name": "Can add permission",
+      "content_type": 9,
+      "codename": "add_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+      "name": "Can change permission",
+      "content_type": 9,
+      "codename": "change_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+      "name": "Can delete permission",
+      "content_type": 9,
+      "codename": "delete_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+      "name": "Can view permission",
+      "content_type": 9,
+      "codename": "view_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+      "name": "Can add group",
+      "content_type": 10,
+      "codename": "add_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+      "name": "Can change group",
+      "content_type": 10,
+      "codename": "change_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+      "name": "Can delete group",
+      "content_type": 10,
+      "codename": "delete_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+      "name": "Can view group",
+      "content_type": 10,
+      "codename": "view_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 41,
+    "fields": {
+      "name": "Can add user",
+      "content_type": 11,
+      "codename": "add_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 42,
+    "fields": {
+      "name": "Can change user",
+      "content_type": 11,
+      "codename": "change_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 43,
+    "fields": {
+      "name": "Can delete user",
+      "content_type": 11,
+      "codename": "delete_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 44,
+    "fields": {
+      "name": "Can view user",
+      "content_type": 11,
+      "codename": "view_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 45,
+    "fields": {
+      "name": "Can add content type",
+      "content_type": 12,
+      "codename": "add_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 46,
+    "fields": {
+      "name": "Can change content type",
+      "content_type": 12,
+      "codename": "change_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 47,
+    "fields": {
+      "name": "Can delete content type",
+      "content_type": 12,
+      "codename": "delete_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 48,
+    "fields": {
+      "name": "Can view content type",
+      "content_type": 12,
+      "codename": "view_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 49,
+    "fields": {
+      "name": "Can add session",
+      "content_type": 13,
+      "codename": "add_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 50,
+    "fields": {
+      "name": "Can change session",
+      "content_type": 13,
+      "codename": "change_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 51,
+    "fields": {
+      "name": "Can delete session",
+      "content_type": 13,
+      "codename": "delete_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 52,
+    "fields": {
+      "name": "Can view session",
+      "content_type": 13,
+      "codename": "view_session"
+    }
+  },
+  {
+    "model": "users.authuser",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$216000$zwmHF8L8RJ7o$I9m2Fz8p17hE0NasjF+DMd6rYzvReP0asT8cl8jhD+w=",
+      "last_login": "2021-05-08T21:06:11Z",
+      "is_superuser": true,
+      "first_name": "Alex",
+      "last_name": "Csibi",
+      "email": "alex.csibi@gmail.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2021-05-06T14:16:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.authuser",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$216000$JMqEHey778xz$XRejf0l718hSsa/qOMO++4wL+SkPNOb/lzCyiG7DJI0=",
+      "last_login": "2021-05-08T21:08:05Z",
+      "is_superuser": false,
+      "first_name": "",
+      "last_name": "",
+      "email": "dummy@email.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2021-05-06T14:16:19Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.authuser",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$216000$Hs01aR5NXsgt$o4yCRIAis39JJAwJEhI9TBEQPDUQGGF6drVAok67R+s=",
+      "last_login": null,
+      "is_superuser": true,
+      "first_name": "",
+      "last_name": "",
+      "email": "dummy1@email.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2021-05-09T23:07:19.209Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.authuser",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$216000$eKO6QoJoPiFh$A/1hRDwls0fDNpKKySPvw0esGqHrmxP2AmXnrdUzOWM=",
+      "last_login": null,
+      "is_superuser": true,
+      "first_name": "",
+      "last_name": "",
+      "email": "dummy2@email.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2021-05-09T23:16:58.330Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]

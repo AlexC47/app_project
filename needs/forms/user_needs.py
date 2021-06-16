@@ -2,7 +2,7 @@ from django.forms import ModelForm
 from needs.models.needs import UserNeedModel
 
 
-class TagForm(ModelForm):
+class UserNeedForm(ModelForm):
     class Meta:
         model = UserNeedModel
         fields = ['name', 'special_tag']

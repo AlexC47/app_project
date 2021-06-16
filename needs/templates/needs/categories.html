@@ -7,7 +7,7 @@
 
 
 {% block content %}
-{% if not user.is_superuser %}
+{% if not user.is_authenticated %}
 <h2>You shouldn't be here.</h2>
     <br>
     <img src="https://i.imgflip.com/3aku2l.png">
@@ -23,11 +23,14 @@
     <ul>
         {% for category in categories %}
         <li>
+            {% if not category.is_active%}
+            <p>AWAITING MODERATION</p>
+            {% endif %}
             <p>Name: {{ category.name }}</p>
-            <p>Active: {{ category.is_active }}</p>
             <p>Special Tag: {{ category.special_tag }}</p>
         </li>
         {% endfor %}
     </ul>
+
 {% endif %}
 {% endblock %}
