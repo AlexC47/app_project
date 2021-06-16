@@ -11,36 +11,46 @@
 
 
 {% block content %}
-<div>
-    <form action='' method='post'>
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type='submit' value='Add Need Template'>
-    </form>
-</div>
+<div class="page-content">
+    <div>
+        Can't find what you need ? Add your own
+        <a href="{% url 'needs:categories' %}">categories</a>,
+        <a href="{% url 'needs:tags' %}">tags</a> or
+        <a href="{% url 'needs:needs' %}">needs</a>
+    </div>
+    <div>
+        <form action='' method='post'>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type='submit' value='Add Need Template'>
+        </form>
+    </div>
 
-<div>
-    <ul>
-        {% for need in need_templates %}
-            <div class="need-template">
-                <li>
-                    <p>Name: {{ need.need.name }}</p>
-                    <p>Tag: {% for tag in need.tag.all %}
-                        {{ tag.name }},
-                    {% endfor %}
-                    </p>
-                    <p>Category:
-                    {% for category in need.category.all %}
-                        {{ category.name }},
-                    {% endfor %}
-                    </p>
-                    <form class="add-user-need" action="{% url 'needs:add_user_need' need.id %}">
-                        {% csrf_token %}
-                        <input type="submit" value="Add need to profile" />
-                    </form>
-                </li>
-            </div>
-        {% endfor %}
-    </ul>
+    {% include 'pagination.html' %}
+
+    <div class="div-parent">
+            {% for need in page_obj %}
+                <div class="need-template">
+                    <li>
+                        <p>Name: {{ need.need.name }}</p>
+                        <p>Tag: {% for tag in need.tag.all %}
+                            {{ tag.name }},
+                        {% endfor %}
+                        </p>
+                        <p>Category:
+                        {% for category in need.category.all %}
+                            {{ category.name }},
+                        {% endfor %}
+                        </p>
+                        <form class="add-user-need" action="{% url 'needs:add_user_need' need.id %}">
+                            {% csrf_token %}
+                            <input type="submit" value="Add need to profile" />
+                        </form>
+                    </li>
+                </div>
+            {% endfor %}
+    </div>
+
+    {% include 'pagination.html' %}
 </div>
 {% endblock %}

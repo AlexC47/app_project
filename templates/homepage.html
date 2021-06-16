@@ -6,24 +6,141 @@
 {% endblock %}
 
 {% block style %}
-
+    <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
 {% endblock %}
 
 {% block content %}
+<div class="page-content">
+    <div class="div-parent">
 
     {% if request.user.is_authenticated %}
-    <h1> Hey, {{ request.user.first_name }} {{ request.user.last_name }}, welcome ! </h1>
+        <div class="for-below-sticky">
+            <div class="left-column">
 
-    <p>You have {{ user.profile.friends.all | length }} friends in need.</p>
-        <ul>
-            {% for friend in user.profile.friends.all %}
-                <li>
-                    {{ friend.first_name }} {{ friend.last_name }} has {{ friend.needs.all | length }} needs
-                    <a href="{% url 'friends:friend-profile' friend.id %}">
-                        View Profile</a>
-                </li>
-            {% endfor %}
-        </ul>
+                <div class="salute">
+
+                    {% if user.notifications.exists %}
+                    <a href="{% url 'users:profile' %}">
+                        <div class="notifications">
+                                <div class="notification-number">
+                                    {{ user.notifications.all | length }}
+                                </div>
+                        </div>
+                    </a>
+                    {% endif %}
+
+
+                    <div class="avatar-container">
+                        <a href="{% url 'users:profile' %}">
+                            <img src="{{ user.profile.avatar.url }}" class="avatar-picture">
+                        </a>
+                    </div>
+                <div>
+                <h1> Hey, <br>{{ user.first_name }} {{ user.last_name }}, <br> welcome ! </h1>
+                    </div>
+                </div>
+
+                <div class="box-container">
+                    <p>You have {{ user.profile.friends.all | length }} friends in need.</p>
+                </div>
+
+                <div class="box-container">
+                    <p>You are have {{ commitment_number }} commitments
+                        with {{ helped_number }} friends.</p>
+                    {% for commitment in commitment_details %}
+                    {% if not commitment.2 %}
+                    <p>{{ commitment.0 }} with {{ commitment.1 }}</p>
+                    {% endif %}
+                    {% endfor %}
+                    {% if private_commitments > 0 %}
+                    <p>...and {{ private_commitments }} private commitments.</p>
+                    {% endif %}
+                </div>
+
+                <div class="box-container">
+                    TOP 5 HELPERS
+                    {% for statistic in statistics %}
+                        <div class="helper">
+                            <li>{{ statistic.user.first_name }}
+                                {{ statistic.user.last_name.0 }}. :
+                                {{ statistic.completed }}</li>
+                        </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+            <div class="left-column-clone"></div>
+        </div>
+
+        <div class="second-column">
+            {% if not user.profile.friends.all %}
+            <p>No friends ? Make sure to set up your
+                <a href="{% url 'users:profile' %}"> profile</a>
+                city and look for <a href="{% url 'friends:friends' %}">friends</a> in your area !<br>
+            Use Cluj-Napoca as city for demonstration purposes.</p>
+            {% endif %}
+                    {% for friend in friends %}
+                    <div class="friend-container">
+                        <div class="picture-container">
+                                <img src="{{ friend.profile.avatar.url }}" class="friend-picture">
+                        </div>
+
+                        <div class="needs-preview-container">
+                            {{ friend.first_name }} {{ friend.last_name }} has {{ friend.needs.all | length }} needs
+                                        <a href="{% url 'friends:friend-profile' friend.id %}">
+                                            View Profile</a>
+                            <div class="needs-container">
+
+                                {% for need in friend.needs.all %}
+                                {% if not need.is_special %}
+                                    <div class="need-preview">
+                                        <div class="need-name">
+                                            {{ need.need.need.name }}
+                                        </div>
+
+                                        <div class="need-progress">
+                                            <progress min="1" max="5" value="{{ need.scale_check }}" class="progressbar"></progress>
+                                        </div>
+
+                                    {% if request.user not in need.pending_list.all and request.user not in need.confirmed_with.all %}
+
+                                        {% if not need.ongoing %}
+                                            <div>
+                                                <a href="{% url 'needs:help' need.id %}">help them</a>
+                                            </div>
+
+                                        {% else %}
+                                            Ongoing.
+
+                                    {% endif %}
+
+                                    {% else %}
+
+                                    {% if not need.completed %}
+                                        {% if need.ongoing %}
+                                            Need is ongoing.
+                                        {% else %}
+                                            <div>
+                                                <a href="{% url 'needs:stop-help' need.id %}">X</a>
+                                            </div>
+
+                                        {% endif %}
+
+                                        {% else %}
+                                            You helped them !
+                                        {% endif %}
+                                    {% endif %}
+                                    </div>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+
+                        </div>
+                    </div>
+                    {% endfor %}
+        </div>
+
+
     {% else %}
         <h2>{{ brand }}</h2>
             <h3>
@@ -36,9 +153,6 @@
             </h3>
 
     {% endif %}
-
-
-
-
-
+    </div>
+</div>
 {% endblock %}

@@ -22,20 +22,18 @@ def profile_view(request):
 class MyProfileView(View):
     def get(self, request):
         profile_form = MyProfileForm(instance=request.user.profile)
-        # details_form = MyDetailsForm(instance=request.user)
+        notifications = request.user.notifications.filter(seen=False).all()
+        seen_notifications = request.user.notifications.filter(seen=True).all()
 
         return render(request, 'users/profile.html', {
             'profile_form': profile_form,
-            # 'details_form': details_form,
+            'notifications': notifications,
+            'seen_notifications': seen_notifications,
         })
 
     def post(self, request):
         profile_form = MyProfileForm(request.POST, request.FILES, instance=request.user.profile)
         profile_form.save()
-
-        # details_form = MyDetailsForm(request.Post, instance=request.user)
-        # details_form.save()
-
 
         messages.success(request, 'Profile successfully updated')
 

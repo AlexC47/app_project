@@ -1,0 +1,197 @@
+.top_helper_container {
+    position: absolute;
+    align: center;
+    top: 90px;
+    right: 10px;
+    margin: 20px;
+    padding: 10px;
+    background-color: var(--bg_color2);
+    border-radius: 10px;
+}
+
+.page-content {
+    min-width: 500px;
+    position: center;
+    margin: auto;
+    padding: 10px;
+    width: 70%;
+}
+
+.div-parent {
+    display: flex;
+}
+
+.left-column {
+    position: sticky;
+    top: 10px;
+    width: 300px;
+    min-width: 300px;
+    margin-left: -15px;
+}
+
+.left-column-clone {
+    position: sticky;
+    top: 0;
+    width: 300px;
+    min-width: 300px;
+}
+
+.salute {
+    background-color: var(--bg_color2);
+    padding: 2px 5px 2px 5px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+}
+
+.left-column div {
+}
+
+.box-container {
+
+    background-color: var(--bg_color2);
+    padding: 2px 10px 2px 10px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+}
+
+.second-column {
+    width: 800px;
+    display: flex;
+    flex-flow: row wrap;
+    margin-left: 13px;
+
+}
+
+.second-column div {
+}
+
+.friend-container {
+    padding: 2px 5px 2px 5px;
+    margin: 2px 5px 5px 2px;
+    background-color: var(--bg_color2);
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px
+    border: 2px red;
+    width: 350px;
+    height: 400px;
+    overflow: hidden;
+}
+
+.picture-container {
+background-color: black;
+    position: relative;
+    margin-width: auto;
+    align: center;
+    width: 350px;
+    height: 300px;
+    overflow: hidden;
+    margin-top: 2px;
+
+}
+
+
+.friend-picture {
+    position: absolute;
+    width: 350px;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.need-preview {
+    display: flex;
+    background-padding: 5px;
+    background-border-radius: 100px;
+    width: 350px;
+    height: 20px;
+    overflow: hidden;
+}
+
+.need-name {
+ width: 70px;
+}
+
+
+.need-progress {
+    min-width: 140px;
+    position: relative;
+}
+
+.need-text {
+    }
+
+
+.progressbar {
+  height: 10px;
+  max-width: 100%;
+  border: 0;
+  background: #var(--txt_color1);
+  border-radius: 100px;
+
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+progress::-moz-progress-bar {
+  border-radius: 100px;
+  background: linear-gradient(to right, rgba(33, 177, 89, .1), rgba(33, 177, 89, 1));
+}
+
+progress::-webkit-progress-bar {
+  background: #eee;
+  border-radius: 100px;
+}
+
+progress::-webkit-progress-value {
+  border-radius: 100px;
+  background: linear-gradient(to right, rgba(33, 177, 89, .1), rgba(33, 177, 89, 1));
+}
+
+
+.avatar-container {
+    position: relative;
+    align: center;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    margin-top: 2px;
+    border-radius: 50%;
+    margin: 0;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, 20%);
+    transform: translate(-50%, 20%);
+}
+
+
+.avatar-picture {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.notifications {
+    -ms-transform: translate(200px, 50px);
+    transform: translate(200px, 50px);
+    position: relative;
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    border-radius: 50%;
+}
+
+.notification-number {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}

@@ -44,4 +44,3 @@ class RegisterForm(forms.ModelForm):
         self.instance.set_password(password)
 
         return super().save(commit)
-

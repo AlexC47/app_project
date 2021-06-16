@@ -22,11 +22,13 @@
 
     <ul>
         {% for need in needs %}
+        {% if not need.special_tag %}
         <li>
             <p>Name: {{ need.name }}</p>
             <p>Active: {{ need.is_active }}</p>
             <p>Special Tag: {{ need.special_tag }}</p>
         </li>
+        {% endif %}
         {% endfor %}
     </ul>
 {% endif %}

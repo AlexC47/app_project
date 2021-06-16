@@ -1,12 +1,11 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
-from users.models.auth import AuthUser
+from users.models import AuthUser
 from friends.models import FriendRequest
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.contrib import messages
 from needs.models.needs import UserNeedModel
-from users.forms.myprofile import MyProfileForm
 
 
 @login_required
@@ -38,7 +37,7 @@ def accept_request(request, id):
     receiver.profile.friends.add(sender)
     sender.profile.friends.add(receiver)
     friend_request.is_active = False
-    friend_request.save()
+    friend_request.delete()
 
     return redirect(reverse('friends:friends'))\
 

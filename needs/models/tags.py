@@ -13,8 +13,3 @@ class TagModel(CustomModel):
 
     def __repr__(self):
         return self.__str__()
-
-
-# class NeedTagModel(CustomModel):
-#     need = models.ForeignKey(NeedModel, on_delete=models.CASCADE)
-#     tag = models.ForeignKey(TagModel, on_delete=models.CASCADE)
