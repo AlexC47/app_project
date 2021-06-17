@@ -1,5 +1,3 @@
-from django.shortcuts import render
-from needs.models.needs import UserNeedModel
 from django.views import View
 from django.urls import reverse
 from django.shortcuts import render, redirect

@@ -1,15 +1,12 @@
 from django.shortcuts import render, HttpResponseRedirect, Http404, redirect
 from django.views.generic import ListView
-from ..models.needs import NeedModel, NeedTemplateModel, UserNeedModel
-from ..models.categories import CategoryModel
-from ..models.tags import TagModel
+from ..models import NeedModel, NeedTemplateModel, UserNeedModel, CategoryModel, TagModel
 from django.views import View
 from ..forms.categories import CategoryForm
 from ..forms.tags import TagForm
 from ..forms.needs import NeedForm
 from ..forms.needtemplate import NeedTemplateForm
-from users.models import AuthUser
-from users.models import Statistics
+from users.models import AuthUser, Statistics
 from django.urls import reverse
 from django.core.paginator import Paginator
 
@@ -99,6 +96,7 @@ class HelpNeedView(View):
         need = UserNeedModel.objects.get(id=id)
         helper = request.user
         need.pending_list.add(helper)
+        need.save()
 
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 

@@ -54,8 +54,8 @@
 Unseen notifications:
     {% for notification in notifications %}
     <div>
-        {{ notification.message }} <a href="{{ notification.link }}">View</a>
-        <a href="{% url 'users:notifications:notification-seen' notification.id %}">seen</a>
+        {{ notification.message }} <a href="{{ notification.link }}">View</a>,
+        <a href="{% url 'users:notifications:notification-seen' notification.id %}">mark seen</a>
         or
         <a href="{% url 'users:notifications:notification-remove' notification.id %}">remove</a>
     </div>
@@ -63,7 +63,7 @@ Unseen notifications:
 Seen notifications:
     {% for seen_notification in seen_notifications %}
         <div>
-            {{ seen_notification.message }} {{ notification.message }} <a href="{{ notification.link }}">View</a>
+            {{ seen_notification.message }} {{ notification.message }} <a href="{{ notification.link }}">View</a>,
             <a href="{% url 'users:notifications:notification-remove' seen_notification.id %}">remove</a>
         </div>
     {% endfor %}

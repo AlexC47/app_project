@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from users.forms.myprofile import MyProfileForm, MyDetailsForm
+from django.utils.decorators import method_decorator
 
 # Create your views here.
 AuthUserModel = get_user_model()
@@ -18,7 +19,7 @@ def profile_view(request):
     return render(request, 'users/profile.html')
 
 
-# @login_required
+@method_decorator(login_required, name='dispatch')
 class MyProfileView(View):
     def get(self, request):
         profile_form = MyProfileForm(instance=request.user.profile)
@@ -33,11 +34,12 @@ class MyProfileView(View):
 
     def post(self, request):
         profile_form = MyProfileForm(request.POST, request.FILES, instance=request.user.profile)
-        profile_form.save()
+        if profile_form.is_valid():
+            profile_form.save()
 
         messages.success(request, 'Profile successfully updated')
 
-        return redirect('/users/profile/')
+        return redirect(reverse('users:profile'))
 
 
 def friends_view(request):

@@ -1,6 +1,6 @@
 from django.views import View
 from django.shortcuts import render, HttpResponse, Http404, redirect
-from needs.models.needs import NeedTemplateModel, UserNeedModel
+from needs.models import NeedTemplateModel, UserNeedModel
 from django.contrib.auth import get_user_model
 from users.models import Statistics
 from django.urls import reverse

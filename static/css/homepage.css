@@ -79,6 +79,10 @@
     overflow: hidden;
 }
 
+.friend-container:hover {
+    box-shadow: 10px 10px 5px black;
+}
+
 .picture-container {
 background-color: black;
     position: relative;
