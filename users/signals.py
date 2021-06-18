@@ -32,12 +32,13 @@ def create_friend_request_notification(instance, created, **kwargs):
 def create_user_need_notification(instance, action, **kwargs):
     if action == 'post_add':
         print('m2m signal instance_user:', instance.user)
-        print('m2m signal AuthUserModel:', 0)
+        print('m2m signal logged_in_user:', 0)
         if instance.user != 0:
             notification = Notification(
                 user=instance.user,
                 content_object=instance,
                 message='New need interaction',
-                link=reverse('needs:my_needs'),
+                link=reverse('needs:details', args=(instance.id,)),
+                # link=reverse('needs:my_needs'),
             )
             notification.save()

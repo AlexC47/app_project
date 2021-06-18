@@ -12,7 +12,7 @@ class NeedTemplateForm(ModelForm):
         ]
 
         labels = {
-            'need': 'Need Name',
+            'need': 'Description',
             'tag': 'Tag(s)',
 
         }

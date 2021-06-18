@@ -2,6 +2,7 @@ from django.views import View
 from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
+from django.http import HttpResponseRedirect
 
 AuthUserModel = get_user_model()
 
@@ -21,3 +22,20 @@ class RemoveNeedView(View):
         need.delete()
 
         return redirect(reverse('needs:my_needs'))
+
+
+class MyNeedDetailsView(View):
+    def get(self, request, id):
+        need = request.user.needs.get(id=id)
+
+        return render(request, 'needs/my_need_details.html', {
+            'need': need,
+        })
+
+    # def post(self, request, id):
+    #     need = request.user.needs.get(id=id)
+    #
+    #     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'), {
+    #         'need': need,
+    #     })
+    #
