@@ -42,10 +42,11 @@ body {
 
 }
 
-.main_tab ul li:first-child{
+.main_tab ul li:first-child {
+    text-decoration: none;
     margin-right: auto;
     margin-left: 10px;
-    color: var(--txt_color1);
+    color: var(--txt_color2);
 
 }
 

@@ -12,7 +12,7 @@ class MyProfileForm(ModelForm):
     class Meta:
         model = Profile
         fields = ['about', 'city', 'country', 'avatar']
-        # exclude = ['user']
+        exclude = ['user']
 
     def clean_avatar(self):
         image = self.cleaned_data.get('avatar')
@@ -23,8 +23,8 @@ class MyProfileForm(ModelForm):
             w, h = get_image_dimensions(image)
             if image.content_type not in ['image/png', 'image/jpg', 'image/jpeg', 'image/gif', 'image/webp']:
                 raise forms.ValidationError(u'Format not allowed')
-            if w > 5000 or h > 5000:
-                raise forms.ValidationError(u'Max width/height is 5000px')
+            if w > 8000 or h > 8000:
+                raise forms.ValidationError(u'Max width/height is 8000px')
             if image.size > 5000000:
                 raise forms.ValidationError(u'File size cannot exceed 5Mb')
 

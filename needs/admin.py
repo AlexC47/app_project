@@ -29,12 +29,10 @@ class NeedTemplateAdmin(admin.ModelAdmin):
 
 @admin.register(UserNeedModel)
 class UserNeedModelAdmin(admin.ModelAdmin):
-    list_display = ('id', 'str', 'is_special')
+    list_display = ('id', 'need', 'description', 'is_special')
 
 
 #
-admin.site.unregister(UserNeedModel)
+# admin.site.unregister(UserNeedModel)
 # admin.site.unregister(NeedTemplateModel)
-
-
-admin.site.register(UserNeedModel)
+# admin.site.register(UserNeedModel)

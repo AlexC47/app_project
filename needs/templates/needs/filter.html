@@ -1,0 +1,25 @@
+<div class="filters-wrapper">
+    <form class="filters" method="get" action="{% url 'needs:needs_templates_list' %}">
+        <div class="top-filters">
+        {% for field in filter_form %}
+        {% if field.id_for_label %}
+            {% if field.id_for_label == 'id_search_by' %}
+            <div class="flex-valign search-by-field">
+            {% else %}
+            <div class="flex-valign">
+            {% endif %}
+                <label>{{ field.label }}</label>
+                {{ field }}
+            </div>
+        {% else %}
+        </div>
+        <div class="ingredients-wrapper">
+            {{ field }}
+        </div>
+        {% endif %}
+        {% endfor %}
+        <input type="submit" value="Apply filters" />
+        <a href="{% url 'needs:needs_templates_list' %}">Reset filters</a>
+    </form>
+</div>
+<br>

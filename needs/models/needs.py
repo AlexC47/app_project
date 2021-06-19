@@ -25,6 +25,12 @@ class NeedTemplateModel(CustomModel):
     tag = models.ManyToManyField(TagModel)
     category = models.ManyToManyField(CategoryModel)
 
+    def __str__(self):
+        return self.need.name
+
+    def __repr__(self):
+        return self.__str__()
+
 
 class UserNeedModel(CustomModel):
     user = models.ForeignKey(AuthUserModel, on_delete=models.CASCADE, related_name='needs')
@@ -42,6 +48,9 @@ class UserNeedModel(CustomModel):
         return self.user.last_name, self.need.need.name
 
     def __repr__(self):
+        return self.__str__()
+
+    def description(self):
         return self.__str__()
 
     @property

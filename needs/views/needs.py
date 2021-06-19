@@ -6,6 +6,7 @@ from ..forms.categories import CategoryForm
 from ..forms.tags import TagForm
 from ..forms.needs import NeedForm
 from ..forms.needtemplate import NeedTemplateForm
+from ..forms.filter import SearchAndFilterNeeds
 from users.models import AuthUser, Statistics
 from django.urls import reverse
 from django.core.paginator import Paginator
@@ -26,21 +27,24 @@ def needs_list(request):
 
 class NeedTemplateView(View):
     def get(self, request):
-        need_templates = NeedTemplateModel.objects.order_by('-created_at').all()
+        filter_form = SearchAndFilterNeeds(request.GET)
+        # need_templates = NeedTemplateModel.objects.order_by('-created_at').all()
+        need_templates = filter_form.get_filtered_needs()
         paginator = Paginator(need_templates, 10)
         page_number = request.GET.get('page', 1)
         page_obj = paginator.get_page(page_number)
 
         return render(request, 'needs/needs_list.html', {
             'page_obj': page_obj,
-            'form': NeedTemplateForm
+            'filter_form': filter_form,
+            'form': NeedTemplateForm,
         })
 
     def post(self, request):
         form = NeedTemplateForm(request.POST)
         form.save()
 
-        return redirect('/needs/list/')
+        return redirect(reverse('needs:needs_templates_list'))
 
 
 class CategoryView(View):
@@ -56,7 +60,7 @@ class CategoryView(View):
         form = CategoryForm(request.POST)
         form.save()
 
-        return redirect('/needs/categories/')
+        return redirect(reverse('needs:categories'))
 
 
 class TagView(View):
@@ -72,7 +76,7 @@ class TagView(View):
         form = TagForm(request.POST)
         form.save()
 
-        return redirect('/needs/tags/')
+        return redirect(reverse('needs:tags'))
 
 
 class NeedView(View):

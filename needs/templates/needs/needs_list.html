@@ -9,9 +9,12 @@
     <title>Needs | List</title>
 {% endblock %}
 
+{% include 'needs/filter.html' %}
 
 {% block content %}
+
 <div class="page-content">
+    {% include 'needs/filter.html' %}
 
     {% include 'pagination.html' %}
 
@@ -44,10 +47,7 @@
         Can't find what you need ? Add your own
         <a href="{% url 'needs:tags' %}">tags</a> or
         <a href="{% url 'needs:needs' %}">need description</a>
-    </div>
-
-    <div>
-        <p>Create your own need template:</p>
+        and create your own need template:</p>
         <form action='' method='post'>
             {% csrf_token %}
             {{ form.as_p }}
