@@ -1,6 +1,7 @@
 from django.views import View
 from users.forms.register import RegisterForm
 from django.shortcuts import render, redirect, reverse
+from users.emails import send_register_email
 
 
 class RegisterView(View):
@@ -15,6 +16,7 @@ class RegisterView(View):
 
         if form.is_valid():
             user = form.save()
+            send_register_email(user)
             return redirect(reverse('users:account:login'))
 
         else:

@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'needs.apps.NeedsConfig',
     'users.apps.UsersConfig',
     'friends.apps.FriendsConfig',
+    'fontawesome-free',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    # 'users.middlewares.activation.ValidateTokenMiddleware', runs from a decorator to not check every request call
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -137,3 +139,12 @@ MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL = '/'
 
 AUTH_USER_MODEL = 'users.AuthUser'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = config('EMAIL_HOST_USER')
+

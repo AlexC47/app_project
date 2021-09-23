@@ -7,5 +7,5 @@ urlpatterns = [
     path('notifications/', include('users.urls.notifications')),
     path('account/', include('users.urls.account')),
     path('profile/', include('users.urls.profile')),
-
+    path('activation/<str:token>/', include('users.urls.activation')),
 ]
