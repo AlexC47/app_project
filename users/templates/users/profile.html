@@ -16,46 +16,48 @@
 
 
 {% if request.user.is_authenticated %}
-    <div>
-    <p>Profile details for {{ user.first_name }}</p>
-    {% if user.profile.avatar %}
+    <div class="div-parent">
         <div>
-            <img src="{{ user.profile.avatar.url }}" height="150">
+            <p>Profile details for {{ user.first_name }}</p>
+            {% if user.profile.avatar %}
+            <div>
+                <img src="{{ user.profile.avatar.url }}" height="150">
+            </div>
+
+            {% else %}
+                <p>No avatar uploaded</p>
+                <div>
+                    <img src="{% static 'default_avatar.png' %}" height="150">
+                </div>
+
+            {% endif %}
+
+
+            <form method='post' enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ profile_form.as_p }}
+                <button type='submit', name="btn1">Update</button>
+            </form>
         </div>
 
-    {% else %}
-        <p>No avatar uploaded</p>
-        <div>
-            <img src="{% static 'default_avatar.png' %}" height="150">
+
+        <div class="stats_container">
+            <p align="center">STATS</p>
+            <p>Completed: {{ user.statistics.completed }}</p>
+            <ul>Most used needs:
+                {% for category in user.statistics.most_used_need %}
+                    <li>{{ category }}</li>
+                {% endfor %} </ul>
         </div>
-
-    {% endif %}
-
-
-    <form method='post' enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ profile_form.as_p }}
-        <button type='submit', name="btn1">Update</button>
-    </form>
     </div>
 
-    {% include 'includes/messages.html' %}
 
-
-    <div class="stats_container">
-        <p align="center">STATS</p>
-        <p>Completed: {{ user.statistics.completed }}</p>
-        <ul>Most used needs:
-            {% for category in user.statistics.most_used_need %}
-                <li>{{ category }}</li>
-            {% endfor %} </ul>
-    </div>
-    </div>
+    <div class="friends-container">
 Unseen notifications:
     {% for notification in notifications %}
     <div>
-        {{ notification.message }} <a href="{{ notification.link }}">View</a>
-        <a href="{% url 'users:notifications:notification-seen' notification.id %}">seen</a>
+        {{ notification.message }} <a href="{{ notification.link }}">View</a>,
+        <a href="{% url 'users:notifications:notification-seen' notification.id %}">mark seen</a>
         or
         <a href="{% url 'users:notifications:notification-remove' notification.id %}">remove</a>
     </div>
@@ -63,10 +65,13 @@ Unseen notifications:
 Seen notifications:
     {% for seen_notification in seen_notifications %}
         <div>
-            {{ seen_notification.message }} {{ notification.message }} <a href="{{ notification.link }}">View</a>
+            {{ seen_notification.message }} {{ notification.message }} <a href="{{ notification.link }}">View</a>,
             <a href="{% url 'users:notifications:notification-remove' seen_notification.id %}">remove</a>
         </div>
     {% endfor %}
+    </div>
+
+</div>
 
 {% else %}
     <p>You are not authenticated. Please <a href='/users/login'>login</a></p>

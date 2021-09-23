@@ -2,7 +2,7 @@ from django.urls import path, include
 from needs.views.needs import needs_list, CategoryView, TagView, NeedView, NeedTemplateView, HelpNeedView,\
     StopHelpView, ConfirmHelpView, ResetNeedView, CompletedNeedView, OngoingNeedView
 from needs.views.add_need import AddNeedToProfileView
-from needs.views.my_needs import RemoveNeedView
+from needs.views.my_needs import RemoveNeedView, MyNeedDetailsView
 
 app_name = 'needs'
 
@@ -21,6 +21,6 @@ urlpatterns = [
     path('reset/<int:id>/', ResetNeedView.as_view(), name='reset'),
     path('completed/<int:id>/', CompletedNeedView.as_view(), name='completed'),
     path('ongoing/<int:id>/', OngoingNeedView.as_view(), name='ongoing'),
-
+    path('details/<int:id>/', MyNeedDetailsView.as_view(), name='details'),
 
 ]

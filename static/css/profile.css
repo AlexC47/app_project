@@ -18,3 +18,12 @@
     width: 70%;
     display: flex;
 }
+
+.friends-container {
+    position: relative;
+
+}
+
+.div-parent {
+    display: flex;
+}

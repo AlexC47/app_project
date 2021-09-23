@@ -19,6 +19,10 @@
     display: flex;
 }
 
+.page-content div {
+    margin: 5px 10px 5px 10px;
+}
+
 .header {
     min-width: 500px;
     position: center;

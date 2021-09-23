@@ -1,15 +1,13 @@
 from django.shortcuts import render, HttpResponseRedirect, Http404, redirect
 from django.views.generic import ListView
-from ..models.needs import NeedModel, NeedTemplateModel, UserNeedModel
-from ..models.categories import CategoryModel
-from ..models.tags import TagModel
+from ..models import NeedModel, NeedTemplateModel, UserNeedModel, CategoryModel, TagModel
 from django.views import View
 from ..forms.categories import CategoryForm
 from ..forms.tags import TagForm
 from ..forms.needs import NeedForm
 from ..forms.needtemplate import NeedTemplateForm
-from users.models import AuthUser
-from users.models import Statistics
+from ..forms.filter import SearchAndFilterNeeds
+from users.models import AuthUser, Statistics
 from django.urls import reverse
 from django.core.paginator import Paginator
 
@@ -29,21 +27,24 @@ def needs_list(request):
 
 class NeedTemplateView(View):
     def get(self, request):
-        need_templates = NeedTemplateModel.objects.order_by('-created_at').all()
-        paginator = Paginator(need_templates, 6)
+        filter_form = SearchAndFilterNeeds(request.GET)
+        # need_templates = NeedTemplateModel.objects.order_by('-created_at').all()
+        need_templates = filter_form.get_filtered_needs()
+        paginator = Paginator(need_templates, 10)
         page_number = request.GET.get('page', 1)
         page_obj = paginator.get_page(page_number)
 
         return render(request, 'needs/needs_list.html', {
             'page_obj': page_obj,
-            'form': NeedTemplateForm
+            'filter_form': filter_form,
+            'form': NeedTemplateForm,
         })
 
     def post(self, request):
         form = NeedTemplateForm(request.POST)
         form.save()
 
-        return redirect('/needs/list/')
+        return redirect(reverse('needs:needs_templates_list'))
 
 
 class CategoryView(View):
@@ -52,19 +53,19 @@ class CategoryView(View):
 
         return render(request, 'needs/categories.html', {
             'categories': categories,
-            'form': CategoryForm
+            # 'form': CategoryForm,
         })
 
     def post(self, request):
         form = CategoryForm(request.POST)
         form.save()
 
-        return redirect('/needs/categories/')
+        return redirect(reverse('needs:categories'))
 
 
 class TagView(View):
     def get(self, request):
-        tags = TagModel.objects.all
+        tags = TagModel.objects.exclude(special_tag=True).order_by('-created_at')
 
         return render(request, 'needs/tags.html', {
             'tags': tags,
@@ -75,16 +76,16 @@ class TagView(View):
         form = TagForm(request.POST)
         form.save()
 
-        return redirect('/needs/tags/')
+        return redirect(reverse('needs:tags'))
 
 
 class NeedView(View):
     def get(self, request):
-        needs = NeedModel.objects.order_by('-created_at')
+        needs = NeedModel.objects.exclude(special_tag=True).order_by('-created_at')
 
         return render(request, 'needs/needs.html', {
             'needs': needs,
-            'form': NeedForm
+            'form': NeedForm,
         })
 
     def post(self, request):
@@ -99,6 +100,7 @@ class HelpNeedView(View):
         need = UserNeedModel.objects.get(id=id)
         helper = request.user
         need.pending_list.add(helper)
+        need.save()
 
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
@@ -120,7 +122,8 @@ class ConfirmHelpView(View):
         need.confirmed_with.add(helper)
         need.pending_list.remove(helper)
 
-        return redirect(reverse('needs:my_needs'))
+        # return redirect(reverse('needs:my_needs'))
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 
 class ResetNeedView(View):
@@ -149,7 +152,8 @@ class ResetNeedView(View):
         need.save()
         stats.save()
 
-        return redirect(reverse('needs:my_needs'))
+        # return redirect(reverse('needs:my_needs'))
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 
 class OngoingNeedView(View):
@@ -158,7 +162,8 @@ class OngoingNeedView(View):
         need.ongoing = True
         need.save()
 
-        return redirect(reverse('needs:my_needs'))
+        # return redirect(reverse('needs:my_needs'))
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 
 class CompletedNeedView(View):
@@ -172,4 +177,5 @@ class CompletedNeedView(View):
 
         need.save()
 
-        return redirect(reverse('needs:my_needs'))
+        # return redirect(reverse('needs:my_needs'))
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))

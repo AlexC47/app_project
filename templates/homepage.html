@@ -19,11 +19,11 @@
 
                 <div class="salute">
 
-                    {% if user.notifications.exists %}
+                    {% if unseen_notifications.exists %}
                     <a href="{% url 'users:profile' %}">
                         <div class="notifications">
                                 <div class="notification-number">
-                                    {{ user.notifications.all | length }}
+                                    {{ unseen_notifications | length }}
                                 </div>
                         </div>
                     </a>
@@ -82,7 +82,8 @@
                     {% for friend in friends %}
                     <div class="friend-container">
                         <div class="picture-container">
-                                <img src="{{ friend.profile.avatar.url }}" class="friend-picture">
+                            <a href="{% url 'friends:friend-profile' friend.id %}">
+                                <img src="{{ friend.profile.avatar.url }}" class="friend-picture"></a>
                         </div>
 
                         <div class="needs-preview-container">
@@ -91,7 +92,7 @@
                                             View Profile</a>
                             <div class="needs-container">
 
-                                {% for need in friend.needs.all %}
+                                {% for need in friend.needs.all|slice:"0:3" %}
                                 {% if not need.is_special %}
                                     <div class="need-preview">
                                         <div class="need-name">
@@ -131,8 +132,14 @@
                                         {% endif %}
                                     {% endif %}
                                     </div>
+                                {% else %}
+                                <div>Private need</div>
                                 {% endif %}
                                 {% endfor %}
+                                {% if friend.needs.all|length > 3 %}
+                                <a href="{% url 'friends:friend-profile' friend.id %}">
+                                    View all needs</a>
+                                {% endif %}
                             </div>
 
                         </div>
@@ -142,14 +149,13 @@
 
 
     {% else %}
-        <h2>{{ brand }}</h2>
+        <h2>{{ brand }} {{ motto }} </h2>
+
+
             <h3>
-                {% if motto %}
-                    {{ motto }}
+                <p></p>
+
                 <p>Please <a href="{% url 'users:account:login' %}">login</a> first</p>
-                {% else %}
-                    Header 2
-                {%endif%}
             </h3>
 
     {% endif %}

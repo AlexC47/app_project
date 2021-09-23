@@ -9,22 +9,12 @@
     <title>Needs | List</title>
 {% endblock %}
 
+{% include 'needs/filter.html' %}
 
 {% block content %}
+
 <div class="page-content">
-    <div>
-        Can't find what you need ? Add your own
-        <a href="{% url 'needs:categories' %}">categories</a>,
-        <a href="{% url 'needs:tags' %}">tags</a> or
-        <a href="{% url 'needs:needs' %}">needs</a>
-    </div>
-    <div>
-        <form action='' method='post'>
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type='submit' value='Add Need Template'>
-        </form>
-    </div>
+    {% include 'needs/filter.html' %}
 
     {% include 'pagination.html' %}
 
@@ -32,7 +22,7 @@
             {% for need in page_obj %}
                 <div class="need-template">
                     <li>
-                        <p>Name: {{ need.need.name }}</p>
+                        <p>Description: {{ need.need.name }}</p>
                         <p>Tag: {% for tag in need.tag.all %}
                             {{ tag.name }},
                         {% endfor %}
@@ -52,5 +42,18 @@
     </div>
 
     {% include 'pagination.html' %}
+
+    <div>
+        Can't find what you need ? Add your own
+        <a href="{% url 'needs:tags' %}">tags</a> or
+        <a href="{% url 'needs:needs' %}">need description</a>
+        and create your own need template:</p>
+        <form action='' method='post'>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type='submit' value='Add Need Template'>
+        </form>
+    </div>
+
 </div>
 {% endblock %}
