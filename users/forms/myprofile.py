@@ -16,9 +16,9 @@ class MyProfileForm(ModelForm):
 
     def clean_avatar(self):
         image = self.cleaned_data.get('avatar')
-        # print(get_image_dimensions(image))
-        # print(image.content_type)
-        # print(image.size)
+        print(get_image_dimensions(image))
+        print(image.content_type)
+        print(image.size)
         if image:
             w, h = get_image_dimensions(image)
             if image.content_type not in ['image/png', 'image/jpg', 'image/jpeg', 'image/gif', 'image/webp']:

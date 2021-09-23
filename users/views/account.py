@@ -50,7 +50,6 @@ class MyProfileView(View):
         })
 
 
-
 def friends_view(request):
     return render(request, 'users/friends.html')
 
